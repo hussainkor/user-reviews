@@ -1,23 +1,38 @@
 import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { LeftArrow, RighttArrow } from './Icons';
+import { reviews } from './data';
 
 function App() {
+  const [active, setActive] = useState(0);
+
+  const { name, msg, designation, image } = reviews[active];
+
+  const handlePrev = () => {
+    active === 0 ? setActive(reviews.length - 1) : setActive((c) => c - 1)
+  }
+
+  function handleNext() {
+    active === reviews.length - 1 ? setActive(0) : setActive((c) => c + 1);
+  }
+
+  const handleRandom = () => {
+    const random = Math.trunc(Math.random() * reviews.length);
+    setActive(random)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="our-review">
+      <h2>Our Reviews</h2>
+      <div className='review-box'>
+        <img src={image} alt={name} className='user-icon' />
+        <h3>{name}</h3>
+        <span>{designation}</span>
+        <p>{msg}</p>
+        <button onClick={handlePrev} className='arrow-btn'>{RighttArrow}</button>
+        <button onClick={handleNext} className='arrow-btn'>{LeftArrow}</button>
+        <button onClick={handleRandom} className='random-btn'>Random Review</button>
+      </div>
     </div>
   );
 }
