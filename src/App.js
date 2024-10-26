@@ -17,23 +17,32 @@ function App() {
   }
 
   const handleRandom = () => {
-    const random = Math.trunc(Math.random() * reviews.length);
-    setActive(random)
+    let random = Math.trunc(Math.random() * reviews.length);
+    if (random === active) {
+      random = random + 1;
+    }
+    setActive(random);
+    console.log(random);
+
   }
 
   return (
-    <div className="our-review">
-      <h2>Our Reviews</h2>
-      <div className='review-box'>
-        <img src={image} alt={name} className='user-icon' />
-        <h3>{name}</h3>
-        <span>{designation}</span>
-        <p>{msg}</p>
-        <button onClick={handlePrev} className='arrow-btn'>{RighttArrow}</button>
-        <button onClick={handleNext} className='arrow-btn'>{LeftArrow}</button>
-        <button onClick={handleRandom} className='random-btn'>Random Review</button>
+    <>
+      <a href='https://www.mrhussain.in/portfolio/' className='back-btn'>Back to Portfolio</a>
+      <div className="our-review">
+        <h2>Our Reviews</h2>
+        <div className='review-box'>
+          <img src={image} alt={name} className='user-icon' />
+          <h3>{name}</h3>
+          <span>{designation}</span>
+          <p>{msg}</p>
+          <button onClick={handlePrev} className='arrow-btn'>{RighttArrow}</button>
+          <button onClick={handleNext} className='arrow-btn'>{LeftArrow}</button>
+          <button onClick={handleRandom} className='random-btn'>Surprise me</button>
+        </div>
       </div>
-    </div>
+    </>
+
   );
 }
 

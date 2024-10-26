@@ -1,5 +1,6 @@
 {
-  "name": "randomcolorgenerator",
+  "name": "user-reviews",
+  "homepage": "https://www.mrhussain.in/portfolio/user-reviews/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
