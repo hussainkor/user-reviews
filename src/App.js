@@ -1,11 +1,10 @@
 import logo from './logo.svg';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { LeftArrow, RighttArrow } from './Icons';
 import { reviews } from './data';
 
 function App() {
   const [active, setActive] = useState(0);
-
   const { name, msg, designation, image } = reviews[active];
 
   const handlePrev = () => {
@@ -22,9 +21,13 @@ function App() {
       random = random + 1;
     }
     setActive(random);
-    console.log(random);
-
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      active === reviews.length - 1 ? setActive(0) : setActive((c) => c + 1);
+    }, 3000)
+  }, [active])
 
   return (
     <>
