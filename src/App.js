@@ -24,9 +24,11 @@ function App() {
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    let slider = setInterval(() => {
       active === reviews.length - 1 ? setActive(0) : setActive((c) => c + 1);
-    }, 3000)
+    }, 2000)
+
+    return () => clearInterval(slider)
   }, [active])
 
   return (
